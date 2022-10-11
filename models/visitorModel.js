@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const VisitorSchema = mongoose.Schema(
   {
+    status: {
+      type: String,
+      default: "Unresolved",
+    },
     fullName: {
       type: String,
     },

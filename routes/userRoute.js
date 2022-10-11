@@ -12,13 +12,13 @@ const router = express.Router();
 
 router.route("/register").post(register)
 
-router.route("/verify-user").post(verifyUser)
+router.route("/verify-user/:id").post(verifyUser)
 
 router.route("/login").post(login)
 
 router.route("/forgot-password").post(forgotPassword)
 
-router.route("/confirm-user").post(confirmUser)
+router.route("/confirm-user/:id").post(confirmUser)
 
 router.route("/reset-password").post(resetPassword)
 

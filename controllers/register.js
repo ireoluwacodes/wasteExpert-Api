@@ -38,7 +38,7 @@ const register = async (req, res) => {
         const mailOption = mailOptions(
           email,
           "Email Verification",
-          `<a href=127.0.0.1/${token}>Click here to verify mail<a>`
+          `<a href=waste-expert-auth.herokuapp.com/${token}>Click here to verify mail<a>`
         );
 
         const sendMe = new Promise((resolve, reject) => {

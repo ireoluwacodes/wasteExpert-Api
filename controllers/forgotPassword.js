@@ -19,7 +19,7 @@ const forgotPassword = async (req, res) => {
       const mailOption = mailOptions(
         email,
         "Forgot Password",
-        `<a href=127.0.0.1/${token}>Click here to reset password</a>`
+        `<a href=waste-expert-auth.herokuapp.com/${token}>Click here to reset password</a>`
       );
 
       const sendMe = new Promise((resolve, reject) => {

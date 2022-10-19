@@ -11,22 +11,23 @@ const resetPassword = async (req, res) => {
   } else {
     try {
       const token = req.header.authorization.split(" ")[1];
-
+      console.log(token)
       const { id } = jwt.verify(token, process.env.JWT_PASS);
       const user = await User.findById(id);
       const secret = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, secret);
       user.password = hashedPassword;
       const update = await user.save();
+      
       if (update) {
-        res.status(401).json({
+        res.status(200).json({
           message: "Password Changed.",
         });
       }
     } catch (error) {
       res.status(401).json({
         message: "Not authorized to accesss this route",
-        error,
+       
       });
     }
   }

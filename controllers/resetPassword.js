@@ -10,7 +10,7 @@ const resetPassword = async (req, res) => {
     });
   } else {
     try {
-      const token = req.bearer.authorization.split(" ")[1];
+      const token = req.header.authorization.split(" ")[1];
 
       const { id } = jwt.verify(token, process.env.JWT_PASS);
       const user = await User.findById(id);

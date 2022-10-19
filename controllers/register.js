@@ -16,8 +16,7 @@ const register = async (req, res) => {
       const checkMail = await User.findOne({ email });
       if (checkMail) {
         res.status(401).json({
-          message: "Email already exists!",
-          error,
+          message: "Email already exists!",       
         });
       } else {
         const secret = await bcrypt.genSalt(10);

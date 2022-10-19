@@ -23,7 +23,7 @@ const verifyUser = async (req, res) => {
   } catch (error) {
     res.status(401).json({
       message: "Please request new verification link",
-      error,
+   
     });
   }
 };

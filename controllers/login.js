@@ -35,7 +35,6 @@ if(!email || !password){
     } catch (error) {
         res.status(401).json({
             message : "User does not exist",
-            error,
         })
     }
 }

@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const register = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { name, phone, email, password , location } = req.body;
 
-  if (!firstName || !lastName || !email || !password) {
+  if ( !location || !email || !password || !name || !phone) {
     res.status(401).json({
       message: "please enter all fields",
     });
@@ -22,9 +22,10 @@ const register = async (req, res) => {
         const secret = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, secret);
         const newUser = new User({
-          firstName,
-          lastName,
+          name,
+          location,
           email,
+          phone,
           password: hashedPassword,
         });
 
@@ -37,7 +38,7 @@ const register = async (req, res) => {
         const mailOption = mailOptions(
           email,
           "Email Verification",
-          `<a href=waste-expert-auth.herokuapp.com/${token}>Click here to verify mail<a>`
+          `<a href=${req.hostname}/${token}>Click here to verify mail<a>`
         );
 
         const sendMe = new Promise((resolve, reject) => {

@@ -10,19 +10,24 @@ const docs = require("./docs");
 
 const notFound = require("./middlewares/notFound");
 
-
 const app = express();
 
-const options = { customCssUrl: '/public/css/swagger-ui.css',};
+const options = {
+  customJs: [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js",
+  ],
+  customCssUrl: [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css",
+  ],
+};
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api-docs", (req, res, next)=>{
-  docs.host = req.get('host');
-  req.swaggerDoc = docs;
-  next();
-}, swaggerUI.serve, swaggerUI.setup(docs, options));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(docs, options));
 app.use("/api/v1/auth", userRoute);
 
 app.get("/", (req, res) => {

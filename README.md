@@ -3,7 +3,7 @@
 
 ## Documentation can be found at
 ```
-https://waste-expert-auth.herokuapp.com/api-docs/
+https://waste-xpert-api.vercel.app/api-docs/
 ```
 
 
